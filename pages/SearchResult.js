@@ -8,11 +8,11 @@ import SearchResultList from "../components/SeachResultList";
 const SearchResult = ({navigation, route}) => {
 
     return (
-        <View style={{ flex : 1, backgroundColor : 'black'}}>
+        <View style={{ flex : 1, backgroundColor : 'white'}}>
 
                 <HStack style={styles.SearchTitleSection}>
                     <Text style={styles.result}>Résultats</Text>
-                    <FontAwesome name="search" size={30} color="red"  style={{margin : 3,}} />
+                    <FontAwesome name="search" size={30} color="red"  style={{margin : 3,marginRight: 30, marginBottom: 17}} />
                 </HStack>
 
                 <View style = {styles.searchListHolder}>

@@ -6,7 +6,6 @@ import { HStack, VStack } from './styled';
 import { CategoryView } from './views';
 
 // Data
-import { eventList } from '../data';
 import { useEvents, useCategories } from '../hooks';
 
 const CategoryList = ({navigation}) => {

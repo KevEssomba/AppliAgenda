@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigator from "./BottomTabNavigator";
-import { Description } from "../pages";
+import { Account, Description } from "../pages";
 import { NavigationContainer } from "@react-navigation/native";
 import {Connexion} from "../pages";
 
@@ -15,6 +15,7 @@ const RootNavigator = () => {
             <Stack.Group>
                 <Stack.Screen name ="Description" component={Description} />
                 <Stack.Screen name ="Connexion" component={Connexion} />
+                <Stack.Screen name ="Compte" component={Account} />
             </Stack.Group>
         </Stack.Navigator>
 

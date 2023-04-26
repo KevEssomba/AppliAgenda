@@ -8,11 +8,11 @@ const Account = ({navigation, route}) => {
 
     return(
         <>
-        <View style={{ flex: 1 , backgroundColor : 'white'}}>
+        <View style={{ flex: 1 , backgroundColor : 'white', paddingTop : 30}}>
         
 
               <VStack>
-              <AntDesign name="adduser" size={24} color="black" />
+              <AntDesign name="adduser" size={100} color="red"  style={{alignSelf : 'center'}}/>
               <TextInput style={styles.textinput} placeholder="nom" underlineColorAndroid={'transparent'} inputMode="email" />
 
               <TextInput style={styles.textinput} placeholder="Prenom" underlineColorAndroid={'transparent'} inputMode="email" />
@@ -26,14 +26,14 @@ const Account = ({navigation, route}) => {
               <TextInput style={styles.textinput} placeholder="confirmer mot de passe" underlineColorAndroid={'transparent'} inputMode="email" />
 
               <HStack>
-                <Text>J'accepte les condition générale d'utilisation</Text>
+                <Text style={{alignSelf : 'center'}}>J'accepte les condition générale d'utilisation</Text>
               </HStack>
 
-              <Pressable>
-                     <TouchableOpacity style={styles.button}>
+             
+                     <TouchableOpacity onPress={()=>{navigation.navigate('Home')}}>
                             <Text style ={styles.login}>J'envoie</Text> 
                     </TouchableOpacity> 
-                </Pressable>
+              
 
 
 
@@ -54,31 +54,26 @@ const styles = StyleSheet.create({
 
   textinput:{
     alignSelf:'center',
-    justifyContent:'space-around',
-    alignItems:'center',
     margin:10,
-    padding :10,
+    padding :5,
     borderWidth:1,
     borderRadius:22,
     borderColor:"red",
     backgroundColor:"white",
     width : 300,
 },
-  button:{
-     
-    alignItems:'center',
-    padding:10,
-    marginTop:5,
-    backgroundColor:'black',
-    borderWidth:1,
-    borderRadius:22,
-
-  },
-
   login:{
+    alignSelf : 'center',
+    textAlign : 'center',
+    backgroundColor : 'black',
+    borderRadius : 22,
     color:'white',
     fontWeight:'bold',
-    paddingHorizontal : 125,
+    width : 300,
+    marginTop : 10,
+    paddingVertical : 15
+    
+
   },
    
 });  

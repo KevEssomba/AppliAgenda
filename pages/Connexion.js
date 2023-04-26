@@ -2,6 +2,8 @@ import React from "react";
 import { TextInput,TouchableOpacity, StyleSheet, Text, View ,Image,ImageBackground, Pressable } from 'react-native';
 import { Feather } from '@expo/vector-icons'; 
 import { HStack } from "../components/styled";
+
+
 const Connexion = ({navigation, route}) =>{
 
     return (
@@ -23,7 +25,7 @@ const Connexion = ({navigation, route}) =>{
 
 
                 <Pressable>
-                     <TouchableOpacity style={styles.button}>
+                     <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('Home')}}>
                             <Text style ={styles.login}>Login</Text> 
                     </TouchableOpacity> 
                 </Pressable>
@@ -31,7 +33,7 @@ const Connexion = ({navigation, route}) =>{
 
             <HStack style={{ marginTop : 20}}>
                 <Text> Pas de compte ?</Text>
-                <Pressable>
+                <Pressable onPress={()=>{navigation.navigate('Compte')}}>
                     <View>
                         <Text style={{textDecorationLine: 'underline', color : 'red', marginLeft : 5}} >Créez votre compte !</Text>
                     </View>

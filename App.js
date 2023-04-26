@@ -23,10 +23,7 @@ export default function App() {
   
   return (
     <QueryClientProvider client={queryClient}>
-      {
-        endOfLoading ? <Navigation/> : <Splash/>
-      }
-      
+        <Navigation/> 
     </QueryClientProvider>  
   );
 }

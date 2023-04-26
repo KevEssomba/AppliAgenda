@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect }  from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import Navigation from './navigation';
+import { Splash } from './pages';
+
+// Pages
+
+
 
 export default function App() {
+  const queryClient = new QueryClient();
+  const [endOfLoading, setEndOfLoading] = useState(false);
+  const FAKE_TIME_LOAD = 3000;
+
+  useEffect(() =>{
+    setTimeout (()=>{
+      setEndOfLoading(true);
+    }, FAKE_TIME_LOAD);
+  },[])
+
+  
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      {
+        endOfLoading ? <Navigation/> : <Splash/>
+      }
+      
+    </QueryClientProvider>  
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

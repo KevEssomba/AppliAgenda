@@ -26,17 +26,14 @@ const Account = ({navigation, route}) => {
               <TextInput style={styles.textinput} placeholder="confirmer mot de passe" underlineColorAndroid={'transparent'} inputMode="email" />
 
               <HStack>
-                <Text style={{alignSelf : 'center'}}>J'accepte les condition générale d'utilisation</Text>
+                <Text style={{textAlign : 'center', marginLeft : 55, margin : 15}}>J'accepte les condition générale d'utilisation</Text>
               </HStack>
 
              
-                     <TouchableOpacity onPress={()=>{navigation.navigate('Home')}}>
+                     <TouchableOpacity onPress={()=>{navigation.navigate('Retour vers Acceuil')}}>
                             <Text style ={styles.login}>J'envoie</Text> 
                     </TouchableOpacity> 
-              
-
-
-
+ 
               </VStack>
 
                

@@ -5,5 +5,6 @@ import SearchResult from './SearchResult';
 import Account from './Account';
 import Search from './Search';
 import Splash from './Splash';
+import AccountValidation from './AccountValidation';
 
-export { Home, Connexion, Description, SearchResult, Account , Search, Splash};
+export { Home, Connexion, Description, SearchResult, Account , Search, Splash, AccountValidation};

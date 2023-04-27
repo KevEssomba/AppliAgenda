@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
 
     searchListHolder : {
         backgroundColor : '#F6F5F5',
-        height : '75%'
+        height : '75%',
+        marginTop : 5,
  
     },
 

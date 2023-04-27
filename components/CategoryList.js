@@ -11,8 +11,8 @@ import { useEvents, useCategories } from '../hooks';
 const CategoryList = ({navigation}) => {
     const { data, error, isSuccess, isLoading } = useEvents();
     const { data: categories, error: e, isSuccess: is, isLoading: il } = useCategories();
-
-   console.log(categories);
+{/*console.log(categories); */}
+   
 
     return (
         <HStack style={styles.container}>

@@ -15,7 +15,7 @@ const SearchResultView = ({title, date,desc}) =>{
                     <HStack style ={styles.titleDateContainer}>
                         <HStack>
 
-                             <MaterialIcons name="event" size={24} color="black" />
+                             <MaterialIcons name="event" size={24} color="red" />
                              <Text style={styles.titleText} > {title} </Text>
                         </HStack>
 
@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
     searchItemContainer : {
         backgroundColor : 'white',
         padding : 10,
-        marginTop : 5,
-        marginBottom : 3,
-        borderWidth : 1,
+        margin : 5,
+        borderColor : 'silver',
+        burderradius : 16,
         borderBottomColor : '#E4DCCF',
         borderTopColor : '#E4DCCF',
         width : '100%'

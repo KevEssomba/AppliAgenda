@@ -2,7 +2,8 @@ import React from "react";
 import { View, Text, Button, StyleSheet, SafeAreaView, Pressable, Linking } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Foundation } from '@expo/vector-icons'; 
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 // Je dois ranger toute les icones dans 
 
 // Components
@@ -14,6 +15,7 @@ const Description = ({navigation, route}) => {
     return (
       
             <View style={{ backgroundColor: 'white', flex : 1}}>
+
                     <View style={styles.image}>
                             <Text style ={{ color : 'red'}}></Text>
                     </View>
@@ -34,12 +36,11 @@ const Description = ({navigation, route}) => {
                     </View>
 
 
-                   
                  
                     <View style={styles.linkSections} >
-                        <Pressable>
+                        <Pressable onPress={()=>{Linking.openURL(`tel:${tel}`)}}>
                             <HStack style = {{justifyContent : 'space-between'}}>
-                                <Text style ={styles.text}>{tel }</Text>
+                                <Text style ={styles.text}>{tel}</Text>
                                 
                                     <Foundation name="telephone" size={24} color="red"  />
                                     
@@ -73,10 +74,6 @@ const styles = StyleSheet.create({
        borderBottomColor : 'silver',
        backgroundColor : 'black',
        borderWidth : 1
-    },
-    locationSection: { 
-        
-        
     },
 
     simpleText : {

@@ -1,30 +1,19 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-const getCityAndRegion = async (latitude, longitude) => {
-  const apiKey = 'YOUR_API_KEY';
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
+// Constants
+import { API_EVENT } from '../utils/constants';
 
-  try {
-    const response = await axios.get(url,{ withCredentials: true });
-    const addressComponents = response.data.results[0].address_components;
-    const city = addressComponents.find(component => component.types.includes('locality')).long_name;
-    const region = addressComponents.find(component => component.types.includes('administrative_area_level_1')).long_name;
-    
-    console.log(city, region);
-    return  position = {
-       city : city, 
-       region : region 
-      };
-  } catch (error) {
-    
-  }
+const getLocation = async () => {
+    const { data } = await axios.get(API_EVENT, { withCredentials: true });
 
- 
+    const lieux = Object.entries(data.liste_evenement).map(value => {
+        return value[1].lieu[0].dep;
+    });
+
+    return lieux;
 }
 
 export default function useLocation() {
-    return useQuery('position', getCityAndRegion);
+    return useQuery('lieux', getLocation);
 }
-
-

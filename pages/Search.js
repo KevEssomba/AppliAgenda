@@ -1,44 +1,69 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View,Image ,TouchableOpacity, Modal,setShowModal} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
+// Components
+import LogoView from '../components/views/LogoView';
+
+// Data
+import { useCategories, useLocation } from '../hooks';
 
 
-const data = [
-  { label: 'Item 1', value: '1' },
-  { label: 'Item 2', value: '2' },
-  { label: 'Item 3', value: '3' },
-  { label: 'Item 4', value: '4' },
-  { label: 'Item 5', value: '5' },
-  { label: 'Item 6', value: '6' },
-  { label: 'Item 7', value: '7' },
-  { label: 'Item 8', value: '8' },
-];
-
-const Search = () => {
+const Search = ({ navigation }) => {
   const [lieu, setLieu] = useState(null);
   const [isLieuFocus, setIsLieuFocus] = useState(false);
 
-  const [theme, setTheme] = useState(null);
-  const [isThemeFocus, setIsThemeFocus] = useState(false);
+  const [categorie, setCategorie] = useState(null);
+  const [isCategorieFocus, setCategorieFocus] = useState(false);
+  
+  const [event, setEvent] = useState(null);
+
+  const {
+    data: locations,
+    error: locationsError,
+    isSuccess: locationsLoaded,
+    isLoading: locationsAreLoading
+  } = useLocation();
+
+  const { 
+    data: categories,
+    error: categoriesError,
+    isSuccess: categoriesLoaded,
+    isLoading: categoriesAreLoading
+  } = useCategories();
+
+  let dataCategorySet, dataLocationSet;
+
+  if (categories) {
+      dataCategorySet = [...new Set([...categories])]; // remove duplicates
+      dataCategorySet = dataCategorySet.map(categorie => ({ label: categorie, value: categorie }));
+  }
+
+  if (locations) {
+    dataLocationSet = [...new Set([...locations])];
+    dataLocationSet = dataLocationSet.map(location => ({ label: `${location}e Département`, value: location }));
+  }
+  
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View>
-          <Text>Logo Agenda Dynamique</Text>
+          <LogoView />
       </View>  
 
       <View>
         <Text style={styles.textes}>RECHERCHE</Text>
       </View>
 
-      <Dropdown
+      {locationsLoaded && <Dropdown
           style={[styles.dropdown, isLieuFocus && { borderColor: 'blue' }]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
 
-          data={data}
+          data={dataLocationSet}
           search
           maxHeight={300}
           labelField="label"
@@ -55,39 +80,39 @@ const Search = () => {
             setIsLieuFocus(false);
           }}
         
-      />
-      <Dropdown
-          style={[styles.dropdown, isThemeFocus && { borderColor: 'blue' }]}
+      />}
+      {categoriesLoaded && <Dropdown
+          style={[styles.dropdown, isCategorieFocus && { borderColor: 'blue' }]}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
 
-          data={data}
+          data={dataCategorySet}
           search
           maxHeight={300}
           labelField="label"
           valueField="value"
 
-          placeholder={!isThemeFocus ? 'Thème' : '...'}
+          placeholder={!isCategorieFocus ? 'Categorie' : '...'}
           searchPlaceholder="Search..."
-          value={theme}
+          value={categorie}
 
-          onFocus={() => setIsThemeFocus(true)}
-          onBlur={() => setIsThemeFocus(false)}
+          onFocus={() => setCategorieFocus(true)}
+          onBlur={() => setCategorieFocus(false)}
           onChange={item => {
-            setTheme(item.value);
-            setIsThemeFocus(false);
+            setCategorie(item.value);
+            setCategorieFocus(false);
           }}
         
-      />
+      />}
 
       <View style={styles.container}>   
-        <TouchableOpacity style={styles.button}>
-        <Text style ={styles.btmtext}>Finish</Text> 
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Resultat', {lieu, categorie})}>
+          <Text style ={styles.btmtext}>Finish</Text> 
         </TouchableOpacity> 
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -143,7 +168,7 @@ const styles = StyleSheet.create({
       height:300,
     },
   textes:{
-      fontSize:50,
+      fontSize:40,
       margin:20,
       padding:3,
       alignContent:'center',

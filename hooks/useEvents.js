@@ -14,6 +14,8 @@ const getEvents = async () => {
             date: value[1].date_format_fr,
             site: value[1].contact.site,
             tel: value[1].contact.tel,
+            categorie: value[1].categorie.groupe_nom,
+            lieu: value[1].lieu[0].dep
         };
     });
 

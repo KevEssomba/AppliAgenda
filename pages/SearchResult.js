@@ -1,24 +1,59 @@
-import React from "react";
-import { View, Text, StyleSheet} from "react-native";
+import React, { useLayoutEffect } from "react";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'; 
+
+// Data
+import { useEvents } from "../hooks";
+
 // Components
-import { HStack, VStack } from "../components/styled";
-import SearchResultList from "../components/SeachResultList";
+import { HStack } from "../components/styled";
+import { SearchResultView } from "../components/views";
+import { useRoute } from "@react-navigation/native";
 
 const SearchResult = ({navigation, route}) => {
+    let data;
 
+    const { 
+        data: events, 
+        error: eventError, 
+        isSuccess: eventsLoaded, 
+        isLoading: eventsAreLoading 
+    } = useEvents();
+
+    if (events) {
+        if (!route.params?.categorie && !route.params?.lieu) {
+            data = events;
+        } else {
+            data = events.filter(event => event.lieu === route.params.lieu);
+            data = events.filter(event => event.categorie === route.params.categorie);
+        }
+    }
+    
     return (
         <View style={{ flex : 1, backgroundColor : 'white'}}>
+            <HStack style={styles.SearchTitleSection}>
+                <Text style={styles.result}>Résultats</Text>
+                <FontAwesome name="search" size={30} color="red"  style={{margin : 3,marginRight: 30, marginBottom: 17}} />
+            </HStack>
 
-                <HStack style={styles.SearchTitleSection}>
-                    <Text style={styles.result}>Résultats</Text>
-                    <FontAwesome name="search" size={30} color="red"  style={{margin : 3,marginRight: 30, marginBottom: 17}} />
-                </HStack>
-
-                <View style = {styles.searchListHolder}>
-                    <SearchResultList navigation={navigation}/>
-                </View>
-
+            <View style = {styles.searchListHolder}>
+                {
+                    eventsLoaded && <FlatList 
+                        vertical
+                        data={data}
+                        showsVerticalScrollIndicator={false}
+                        renderItem={({item}) => (
+                            <Pressable onPress={() => navigation.navigate('Description', item)}>
+                                <SearchResultView 
+                                    title={item.titre}
+                                    date={item.date}
+                                    desc={item.desc}
+                                />
+                            </Pressable>
+                        )}
+                    />
+                }
+            </View>
         </View>
     );
 }

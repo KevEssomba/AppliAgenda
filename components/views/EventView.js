@@ -2,13 +2,10 @@ import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
 
-const CategoryView = ({ titre, dateDebut, dateFin, image }) => {
+const EventView = ({ titre, dateDebut, dateFin, image }) => {
   
  return (
-
-    
         <View style={styles.category}>
-        
             <View style={styles.titleBox}>
             <Text style={styles.titleText}>"{titre}"</Text>
             </View>
@@ -16,19 +13,14 @@ const CategoryView = ({ titre, dateDebut, dateFin, image }) => {
                 <Text style={styles.dateText}> {dateDebut }</Text>
             </View>
         </View>
-    
-    
- 
  )
-    
-    
  };
 
-export default CategoryView;
+export default EventView;
 
 const styles = StyleSheet.create({
     category : {
-        margin: 18,
+        margin: 20,
         backgroundColor : 'red',
         borderRadius : 15,
         width : 215,

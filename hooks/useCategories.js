@@ -8,14 +8,12 @@ const getCategories = async () => {
     const { data } = await axios.get(API_EVENT, { withCredentials: true });
 
     const categories = Object.entries(data.liste_evenement).map(value => {
-        return {
-            categorie: value[1].categorie.groupe_nom
-        };
+        return value[1].categorie.groupe_nom;
     });
 
     return categories;
 }
 
 export default function useCategories() {
-    return useQuery('events', getCategories);
+    return useQuery('categories', getCategories);
 }

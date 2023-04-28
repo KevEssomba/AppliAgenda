@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+// Components
 import { VStack } from '../components/styled';
 import { windowWidth } from '../utils/constants';
 import LogoView from '../components/views/LogoView';
@@ -10,8 +13,7 @@ const Home = ({navigation, route}) => {
  
   return (
     <>
-      <View style={styles.container} >
-
+      <SafeAreaView style={styles.container} >
         <VStack style={styles.headersection}>
             <LogoView/>
             <Pressable onPress={()=>{navigation.navigate('Connexion')}} >
@@ -34,15 +36,7 @@ const Home = ({navigation, route}) => {
           <View>
             <CategoryList navigation={navigation} />
           </View>
-
-          <Text style={styles.bodyText}>Suggestion de categorie :  </Text>
-
-          <View>
-            <CategoryList navigation={navigation} />
-          </View>
-
-     
-      </View>
+      </SafeAreaView>
 
       <StatusBar style="auto" />
     </>
@@ -57,7 +51,6 @@ const styles = StyleSheet.create({
   },
 
   headersection: {
-    marginTop : 50,
     flexDirection: 'row',
     justifyContent: 'space-between',
     margin: 10,

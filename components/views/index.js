@@ -1,5 +1,5 @@
-import CategoryView from './CategoryView';
+import EventView from './EventView';
 import SearchResultView from './SearchResultView';
 
 
-export { CategoryView, SearchResultView };
+export { EventView, SearchResultView };

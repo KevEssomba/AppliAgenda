@@ -22,7 +22,7 @@ const SearchResultView = ({title, date,desc}) =>{
                          <Text style={styles.dateText} > {date} </Text>
                     </HStack>
                     
-                <Text style={styles.descText} > {desc.slice(0,35)}... </Text>
+                    <Text style={styles.descText} > {desc.slice(0,35)}... </Text>
                 </VStack>
                
             </View>

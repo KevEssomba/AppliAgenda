@@ -1,39 +1,65 @@
 import React from "react";
-import { FlatList, Pressable, StyleSheet } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text } from "react-native";
 
 // Components
 import { HStack, VStack } from './styled';
-import { CategoryView } from './views';
+import { EventView } from './views';
+import Loader from "./Loader";
 
 // Data
 import { useEvents, useCategories } from '../hooks';
 
-const CategoryList = ({navigation}) => {
-    const { data, error, isSuccess, isLoading } = useEvents();
-    const { data: categories, error: e, isSuccess: is, isLoading: il } = useCategories();
-{/*console.log(categories); */}
-   
+const CategoryList = ({ navigation }) => {
+    const { 
+        data: events, 
+        error: eventError, 
+        isSuccess: eventsLoaded, 
+        isLoading: eventsAreLoading 
+    } = useEvents();
+    const { 
+        data: categories,
+        error: categoriesError,
+        isSuccess: categoriesLoaded,
+        isLoading: categoriesAreLoading
+    } = useCategories();
+
+    let dataCategorySet;
+
+    if (categories)
+        dataCategorySet = [...new Set([...categories])]; // remove duplicates
 
     return (
         <HStack style={styles.container}>
-            {
-                isSuccess && <FlatList 
-                    horizontal
-                    data={data}
-                    showsHorizontalScrollIndicator={false} 
+            {   // When...
+                (categoriesLoaded && eventsLoaded)
+                && <FlatList 
+                    vertical
+                    data={dataCategorySet}
+                    showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => (
-                
-                            <Pressable onPress = {() => {navigation.navigate("Description", item)}}>
-                                <CategoryView 
-                                    titre={item.titre}
-                                    dateDebut={item.date}
-                                    dateFin={item.date}
-                                    image={item.tel}
-                                    />
-                            </Pressable>
-                        
+                        <>
+                            <Text>{ item }</Text>
+
+                            <FlatList 
+                                horizontal
+                                data={[...events].filter(e => e.categorie === item)}
+                                showsHorizontalScrollIndicator={false}
+                                renderItem={({ item }) => (
+                                    <Pressable onPress={() => navigation.navigate('Description', item)}>
+                                        <EventView 
+                                            titre={item.titre}
+                                            dateDebut={item.date}
+                                        />
+                                    </Pressable>
+                                )}
+                            />
+                        </>
                     )}
                 />
+            }
+            
+            {
+                (categoriesAreLoading || eventsAreLoading) && <Loader />
             }
         </HStack>
     );

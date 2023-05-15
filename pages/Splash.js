@@ -2,7 +2,7 @@ import React from "react";
 import Lottie from 'lottie-react-native';
 import { Text } from "react-native";
 
-
+ {/** Page de chargement*/}
 
 const Splash= ()=>{
 

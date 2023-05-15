@@ -4,7 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-// Je dois ranger toute les icones dans 
+{/** Page description d'évènements */}
 
 // Components
 import { HStack, VStack } from "../components/styled";
@@ -24,7 +24,7 @@ const Description = ({navigation, route}) => {
                         <VStack>
                             <HStack>
                                 <MaterialIcons name="location-pin" size={24} color="red"  style = {{marginTop : 12, marginLeft : 10,}} />
-                                <Text style ={[styles.text, { marginTop : 12, }]}> 9  Rue Élisée Reclus, Limoges</Text>
+                                <Text style ={[styles.text, { marginTop : 12, }]}> Lieu : </Text>
                             </HStack>
                             <Text style = {styles.simpleText}> {date} </Text>
                         </VStack>

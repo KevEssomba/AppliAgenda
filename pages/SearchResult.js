@@ -9,7 +9,7 @@ import { useEvents } from "../hooks";
 import { HStack } from "../components/styled";
 import { SearchResultView } from "../components/views";
 import { useRoute } from "@react-navigation/native";
-
+{/** Page d'affichage de résultat*/}
 const SearchResult = ({navigation, route}) => {
     let data;
 
@@ -20,6 +20,7 @@ const SearchResult = ({navigation, route}) => {
         isLoading: eventsAreLoading 
     } = useEvents();
 
+    {/** On effectue le tri en  fonction du lieu et de la catégorie*/}
     if (events) {
         if (!route.params?.categorie && !route.params?.lieu) {
             data = events;
@@ -28,7 +29,7 @@ const SearchResult = ({navigation, route}) => {
             data = events.filter(event => event.categorie === route.params.categorie);
         }
     }
-    
+    {/** On retourne le résultat de la recherche*/} 
     return (
         <View style={{ flex : 1, backgroundColor : 'white'}}>
             <HStack style={styles.SearchTitleSection}>

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 
 // Constants
 import { API_EVENT } from '../utils/constants';
-
+ {/** On récupère les informations sur les évènements à partir de l'api*/}
 const getEvents = async () => {
     const { data } = await axios.get(API_EVENT, { withCredentials: true });
 

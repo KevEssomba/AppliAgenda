@@ -32,7 +32,7 @@ const Home = ({navigation, route}) => {
             <Text style={{ fontSize :14, marginLeft : 9}}>Limoges</Text>
         </View>
 
-          <Text style={styles.bodyText}>Suggestion de categorie :  </Text>
+          <Text style={styles.bodyText}>Suggestion de categories :  </Text>
           <View>
             <CategoryList navigation={navigation} />
           </View>

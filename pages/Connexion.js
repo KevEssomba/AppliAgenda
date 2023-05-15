@@ -3,48 +3,44 @@ import { TextInput,TouchableOpacity, StyleSheet, Text, View ,Image,ImageBackgrou
 import { Feather } from '@expo/vector-icons'; 
 import { HStack } from "../components/styled";
 
-
+ {/* Page de connexion */}
 const Connexion = ({navigation, route}) =>{
 
     return (
 
         <View style={{ flex : 1, alignItems: 'center', backgroundColor: 'white', justifyContent : 'center'}}>
-       
-          <Feather name="user" size={100} color="red" />
+             {/*  Logo utilisateur */}
+            <Feather name="user" size={100} color="red" />
 
-          <View style={styles.hview}>
-                        
-                            <TextInput style={styles.textimput} placeholder="e-mail" underlineColorAndroid={'transparent'} inputMode="email" />
+                <View style={styles.hview}>         
+                    <TextInput style={styles.textimput} placeholder="e-mail" underlineColorAndroid={'transparent'} inputMode="email" />
                 </View>
-                <View style={styles.hview}> 
-                        
-                        <TextInput style={styles.textimput} placeholder="mot de passe" underlineColorAndroid={'transparent'} />
-         </View>
 
-                <Text style ={styles.header}>Connectez-Vous !</Text>
+                <View style={styles.hview}> 
+                    <TextInput style={styles.textimput} placeholder="mot de passe" underlineColorAndroid={'transparent'} />
+                </View>
+
+                  <Text style ={styles.header}>Connectez-Vous !</Text>
 
 
                 <Pressable>
-                     <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('Home')}}>
-                            <Text style ={styles.login}>Login</Text> 
-                    </TouchableOpacity> 
+                      <TouchableOpacity style={styles.button} onPress={()=>{navigation.navigate('Home')}}>
+                              <Text style ={styles.login}>Login</Text> 
+                      </TouchableOpacity> 
                 </Pressable>
 
-
-            <HStack style={{ marginTop : 20}}>
-                <Text> Pas de compte ?</Text>
-                <Pressable onPress={()=>{navigation.navigate('Compte')}}>
-                    <View>
-                        <Text style={{textDecorationLine: 'underline', color : 'red', marginLeft : 5}} >Créez votre compte !</Text>
-                    </View>
-                </Pressable>
-                
-            </HStack>
-            
-            
-         
-        
-           
+                 {/*  Alignement Horizontale de tous les éléments dans la balise Hstacks */}
+                <HStack style={{ marginTop : 20}}>
+                    <Text> Pas de compte ?</Text>
+                    {/** Redirection vers la pade d'accueil lors de l'on appuie */}
+                    <Pressable onPress={()=>{navigation.navigate('Compte')}}>
+                        <View>
+                            <Text style={{textDecorationLine: 'underline', color : 'red', marginLeft : 5}} >Créez votre compte !</Text>
+                        </View>
+                  </Pressable>
+                  
+                 </HStack>
+             
         </View>
     )
 }

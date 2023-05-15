@@ -2,7 +2,7 @@ import React from "react";
 import { Pressable, Text } from "react-native";
 import { VStack } from "../components/styled";
 
-
+{/** Page de contact qui retourn des redirections vers le site web de l'association */}
 const Contact= ({navigation, route}) => {
     return (
         <>

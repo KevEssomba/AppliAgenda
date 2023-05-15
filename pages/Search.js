@@ -9,7 +9,7 @@ import LogoView from '../components/views/LogoView';
 // Data
 import { useCategories, useLocation } from '../hooks';
 
-
+{/** Page de recherches, cette page permet d'éffectuer une recherche en fonction du lieu et de la catégorie*/}
 const Search = ({ navigation }) => {
   const [lieu, setLieu] = useState(null);
   const [isLieuFocus, setIsLieuFocus] = useState(false);
@@ -19,6 +19,7 @@ const Search = ({ navigation }) => {
   
   const [event, setEvent] = useState(null);
 
+  {/** On récupère les localisations grace au gestionnaire d'état des lieux*/}
   const {
     data: locations,
     error: locationsError,
@@ -26,6 +27,8 @@ const Search = ({ navigation }) => {
     isLoading: locationsAreLoading
   } = useLocation();
 
+  
+  {/** On récupère les catégories grace au gestionnaire d'état des catégories*/}
   const { 
     data: categories,
     error: categoriesError,
@@ -35,6 +38,7 @@ const Search = ({ navigation }) => {
 
   let dataCategorySet, dataLocationSet;
 
+{/** Si la récupération a été éffective, on crée un Set de données (un set permet de stocker des valeurs sans index et de manière unique)*/}
   if (categories) {
       dataCategorySet = [...new Set([...categories])]; // remove duplicates
       dataCategorySet = dataCategorySet.map(categorie => ({ label: categorie, value: categorie }));
@@ -56,6 +60,7 @@ const Search = ({ navigation }) => {
         <Text style={styles.textes}>RECHERCHE</Text>
       </View>
 
+{/** On crée une liste déroulante si les données de localisations ont été chargées*/}
       {locationsLoaded && <Dropdown
           style={[styles.dropdown, isLieuFocus && { borderColor: 'blue' }]}
           placeholderStyle={styles.placeholderStyle}
@@ -81,6 +86,7 @@ const Search = ({ navigation }) => {
           }}
         
       />}
+    {/** On crée une liste déroulante si les données de catégories ont été chargées*/}
       {categoriesLoaded && <Dropdown
           style={[styles.dropdown, isCategorieFocus && { borderColor: 'blue' }]}
           placeholderStyle={styles.placeholderStyle}
@@ -117,6 +123,8 @@ const Search = ({ navigation }) => {
 };
 
 export default  Search;
+
+{/**Page de style */}
 
 const styles = StyleSheet.create({
   container: {

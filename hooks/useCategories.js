@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 // Constants
+ {/** On récupère l'api à partir du fichier des constantes*/}
 import { API_EVENT } from '../utils/constants';
 
 const getCategories = async () => {

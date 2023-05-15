@@ -1,7 +1,12 @@
+
+{/* Page de création de compte, cette page est incomplète et nécésiste une intéraction avec une base de données afin de créer un compte */}
+
+{/* Les imports */}
 import React from "react";
 import { TextInput,TouchableOpacity, StyleSheet, Text, View, Pressable} from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { HStack, VStack } from "../components/styled";
+
 
 
 const Account = ({navigation, route}) => {
@@ -12,7 +17,11 @@ const Account = ({navigation, route}) => {
         
 
               <VStack>
+                {/* Balise de Icone ajoute d'utilisateur */}
               <AntDesign name="adduser" size={100} color="red"  style={{alignSelf : 'center'}}/>
+
+               {/* Balise de création de zone de champs, nom, préonm, émail, date de naissance, mots de passe, confirmation de création de compte */}
+
               <TextInput style={styles.textinput} placeholder="nom" underlineColorAndroid={'transparent'} inputMode="email" />
 
               <TextInput style={styles.textinput} placeholder="Prenom" underlineColorAndroid={'transparent'} inputMode="email" />
@@ -29,6 +38,7 @@ const Account = ({navigation, route}) => {
                 <Text style={{textAlign : 'center', marginLeft : 55, margin : 15}}>J'accepte les condition générale d'utilisation</Text>
               </HStack>
 
+               {/* La balise touchable opacity qui met en surbrillance quand elle est appuyée*/}
              
                      <TouchableOpacity onPress={()=>{navigation.navigate('Retour vers Acceuil')}}>
                             <Text style ={styles.login}>J'envoie</Text> 
